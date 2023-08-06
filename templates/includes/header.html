@@ -36,30 +36,33 @@
                 <div class="collapse navbar-collapse flex-grow-1">
                     <!-- menus -->
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="index.html">صفحه اصلی</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="index.html">صفحه اصلی 1</a></li>
-                                <li><a class="dropdown-item" href="index-2.html">صفحه اصلی 2</a></li>
-                                <li><a class="dropdown-item" href="index-3.html">صفحه اصلی 3</a></li>
-                                <li><a class="dropdown-item" href="index-4.html">صفحه اصلی 4</a></li>
-                                <li><a class="dropdown-item" href="index-5.html">صفحه اصلی 5</a></li>
-                            </ul>
+{#                        <li class="nav-item dropdown active">#}
+{#                            <a class="nav-link dropdown-toggle" href="index.html">صفحه اصلی</a>#}
+{#                            <ul class="dropdown-menu">#}
+{#                                <li><a class="dropdown-item" href="index.html">صفحه اصلی 1</a></li>#}
+{#                                <li><a class="dropdown-item" href="index-2.html">صفحه اصلی 2</a></li>#}
+{#                                <li><a class="dropdown-item" href="index-3.html">صفحه اصلی 3</a></li>#}
+{#                                <li><a class="dropdown-item" href="index-4.html">صفحه اصلی 4</a></li>#}
+{#                                <li><a class="dropdown-item" href="index-5.html">صفحه اصلی 5</a></li>#}
+{#                            </ul>#}
+{#                        </li>#}
+{##}
+{#                        <li class="nav-item dropdown">#}
+{#                            <a class="nav-link dropdown-toggle" href="#">صفحات</a>#}
+{#                            <ul class="dropdown-menu">#}
+{#                                <li><a class="dropdown-item" href="category.html">دسته بندی</a></li>#}
+{#                                <li><a class="dropdown-item" href="blog-single.html">جزییات وبلاگ 1</a></li>#}
+{#                                <li><a class="dropdown-item" href="blog-single-2.html">جزییات وبلاگ 2</a></li>#}
+{#                            </ul>#}
+{#                        </li>#}
+                        <li class="nav-item {% if request.resolver_match.url_name == 'home' %} active {% endif %}">
+                            <a class="nav-link" href="{% url 'main:home' %}">صفحه اصلی</a>
                         </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#">صفحات</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="category.html">دسته بندی</a></li>
-                                <li><a class="dropdown-item" href="blog-single.html">جزییات وبلاگ 1</a></li>
-                                <li><a class="dropdown-item" href="blog-single-2.html">جزییات وبلاگ 2</a></li>
-                            </ul>
+                        <li class="nav-item {% if request.resolver_match.url_name == 'contact' %} active {% endif %}">
+                            <a class="nav-link" href="{% url 'main:contact' %}">تماس با ما</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">تماس با ما</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">درباره ما</a>
+                        <li class="nav-item {% if request.resolver_match.url_name == 'about' %} active {% endif %}">
+                            <a class="nav-link" href="{% url 'main:about' %}">درباره ما</a>
                         </li>
                     </ul>
                 </div>

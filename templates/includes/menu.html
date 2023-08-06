@@ -1,26 +1,33 @@
 {% load static %}
 
 <ul class="vertical-menu">
-    <li class="active">
-        <a href="index.html">صفحه اصلی</a>
-        <ul class="submenu">
-            <li><a href="index.html">صفحه اصلی 1</a></li>
-            <li><a href="index-2.html">صفحه اصلی 2</a></li>
-            <li><a href="index-3.html">صفحه اصلی 3</a></li>
-            <li><a href="index-4.html">صفحه اصلی 4</a></li>
-            <li><a href="index-5.html">صفحه اصلی 5</a></li>
-        </ul>
+{#    <li class="active">#}
+{#        <a href="index.html">صفحه اصلی</a>#}
+{#        <ul class="submenu">#}
+{#            <li><a href="index.html">صفحه اصلی 1</a></li>#}
+{#            <li><a href="index-2.html">صفحه اصلی 2</a></li>#}
+{#            <li><a href="index-3.html">صفحه اصلی 3</a></li>#}
+{#            <li><a href="index-4.html">صفحه اصلی 4</a></li>#}
+{#            <li><a href="index-5.html">صفحه اصلی 5</a></li>#}
+{#        </ul>#}
+{#    </li>#}
+{##}
+{#    <li>#}
+{#        <a href="#">صفحات</a>#}
+{#        <ul class="submenu">#}
+{#            <li><a href="category.html">دسته بندی</a></li>#}
+{#            <li><a href="blog-single.html">جزییات وبلاگ 1</a></li>#}
+{#            <li><a href="blog-single-2.html">جزییات وبلاگ 2</a></li>#}
+{##}
+{#        </ul>#}
+{#    </li>#}
+    <li {% if request.resolver_match.url_name == 'home' %} class="active" {% endif %}>
+        <a href="{% url 'main:home' %}">صفحه اصلی</a>
     </li>
-
-    <li>
-        <a href="#">صفحات</a>
-        <ul class="submenu">
-            <li><a href="category.html">دسته بندی</a></li>
-            <li><a href="blog-single.html">جزییات وبلاگ 1</a></li>
-            <li><a href="blog-single-2.html">جزییات وبلاگ 2</a></li>
-
-        </ul>
+    <li {% if request.resolver_match.url_name == 'contact' %} class="active" {% endif %}>
+        <a href="{% url 'main:contact' %}">تماس با ما</a>
     </li>
-    <li><a href="contact.html">تماس با ما</a></li>
-    <li><a href="about.html">درباره ما</a></li>
+    <li {% if request.resolver_match.url_name == 'about' %} class="active" {% endif %}>
+        <a href="{% url 'main:about' %}">درباره ما</a>
+    </li>
 </ul>
