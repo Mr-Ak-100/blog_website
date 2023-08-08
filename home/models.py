@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.http import HttpResponseNotAllowed
 
 
 class Message(models.Model):
@@ -31,6 +32,20 @@ class Info(models.Model):
     city = models.CharField(max_length=20)
     about_text = models.TextField()
 
+    def save(self, *args, **kwargs):
+
+        query = Info.objects.all()
+
+        if self.id:
+            count = query.exclude(id=self.id).count()
+        else:
+            count = query.count()
+
+        if count >= 1:
+            return HttpResponseNotAllowed("Only one Info")
+
+        super().save(*args, **kwargs)
+
     class Meta:
         verbose_name_plural = "Info"
 
@@ -45,6 +60,20 @@ class Social(models.Model):
     instagram = models.URLField(default="https://www.instagram.com/")
     pinterest = models.URLField(default="https://www.pinterest.com/")
     youtube = models.URLField(default="https://youtube.com/")
+
+    def save(self, *args, **kwargs):
+
+        query = Social.objects.all()
+
+        if self.id:
+            count = query.exclude(id=self.id).count()
+        else:
+            count = query.count()
+
+        if count >= 1:
+            return HttpResponseNotAllowed("Only one Social")
+
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = "Social"
