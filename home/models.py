@@ -20,3 +20,34 @@ class Message(models.Model):
             return f" {self.read} | {self.user.username} > {self.title[:30]}"
         else:
             return f" {self.read} | {self.name} > {self.title[:30]}"
+
+
+class Info(models.Model):
+
+    main_text = models.TextField(max_length=150)
+    phone = models.IntegerField(max_length=12)
+    email = models.EmailField()
+    country = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)
+    about_text = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "Info"
+
+    def __str__(self):
+        return "Info"
+
+
+class Social(models.Model):
+
+    facebook = models.URLField(null=True, blank=True)
+    twitter = models.URLField(null=True, blank=True)
+    instagram = models.URLField(null=True, blank=True)
+    pinterest = models.URLField(null=True, blank=True)
+    youtube = models.URLField(null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Social"
+
+    def __str__(self):
+        return "Social"
