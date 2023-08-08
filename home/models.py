@@ -25,7 +25,7 @@ class Message(models.Model):
 class Info(models.Model):
 
     main_text = models.TextField(max_length=150)
-    phone = models.IntegerField(max_length=12)
+    phone = models.IntegerField()
     email = models.EmailField()
     country = models.CharField(max_length=20)
     city = models.CharField(max_length=20)
@@ -40,11 +40,11 @@ class Info(models.Model):
 
 class Social(models.Model):
 
-    facebook = models.URLField(null=True, blank=True)
-    twitter = models.URLField(null=True, blank=True)
-    instagram = models.URLField(null=True, blank=True)
-    pinterest = models.URLField(null=True, blank=True)
-    youtube = models.URLField(null=True, blank=True)
+    facebook = models.URLField(default="https://facebook.com")
+    twitter = models.URLField(default="https://twitter.com")
+    instagram = models.URLField(default="https://www.instagram.com/")
+    pinterest = models.URLField(default="https://www.pinterest.com/")
+    youtube = models.URLField(default="https://youtube.com/")
 
     class Meta:
         verbose_name_plural = "Social"
