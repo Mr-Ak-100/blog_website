@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from . forms import MessageForm
 from . models import Message
+from article.models import Article
 
 
 def home(request):
-    return render(request, "home/index.html", {"sidebar": True})
+
+    articles = Article.objects
+
+    return render(request, "home/index.html", {"sidebar": True, "articles": articles})
 
 
 def about(request):

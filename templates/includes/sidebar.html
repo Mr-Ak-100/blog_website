@@ -88,12 +88,14 @@
             </div>
             <div class="widget-content">
                 <ul class="list">
-                    <li><a href="#">سبک زندگی</a><span>(5)</span></li>
-                    <li><a href="#">الهام بخش</a><span>(2)</span></li>
-                    <li><a href="#">مد روز</a><span>(4)</span></li>
-                    <li><a href="#">سیاست</a><span>(1)</span></li>
-                    <li><a href="#">پرطرفدار</a><span>(7)</span></li>
-                    <li><a href="#">فرهنگ</a><span>(3)</span></li>
+                    {% for category in sidebar_categories %}
+                    <li><a href="#">{{ category.title }}</a><span></span></li>
+                    {% endfor %}
+                    {#                    <li><a href="#">الهام بخش</a><span>(2)</span></li>#}
+                    {#                    <li><a href="#">مد روز</a><span>(4)</span></li>#}
+                    {#                    <li><a href="#">سیاست</a><span>(1)</span></li>#}
+                    {#                    <li><a href="#">پرطرفدار</a><span>(7)</span></li>#}
+                    {#                    <li><a href="#">فرهنگ</a><span>(3)</span></li>#}
                 </ul>
             </div>
 
