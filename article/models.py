@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from . managers import CategoryManager, ArticleManager
 
 
 class Category(models.Model):
@@ -8,6 +9,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=30, verbose_name="Display Name", primary_key=True)
     sidebar = models.BooleanField(default=False, help_text="show in sidebar")
     created = models.DateTimeField(auto_now_add=True)
+    objects = CategoryManager()
 
     class Meta:
         ordering = ["-sidebar"]
@@ -33,7 +35,7 @@ class Article(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    objects = ArticleManager()
 
     def __str__(self):
         return f"{self.author.username} > {self.title[:40]}"
-
