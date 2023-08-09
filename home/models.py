@@ -31,6 +31,8 @@ class Info(models.Model):
     country = models.CharField(max_length=20)
     city = models.CharField(max_length=20)
     about_text = models.TextField()
+    main_logo = models.ImageField(upload_to="main_images")
+    about_image = models.ImageField(upload_to="main_images")
 
     def save(self, *args, **kwargs):
 
