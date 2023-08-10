@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block baner %}
+
+    <section class="page-header">
+        <div class="container-xl">
+            <div class="text-center">
+                <h1 class="mt-0 mb-2">{{ banner_name }}</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center mb-0">
+                        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">صفحه اصلی</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="">{{ banner_name }}</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="col-lg-8">
+
+        <div class="row gy-4">
+
+            {% for article in articles %}
+
+                <div class="col-sm-6">
+                    <!-- post -->
+                    <div class="post post-grid rounded bordered">
+                        <div class="thumb top-rounded">
+
+                            <p class="category-badge position-absolute">
+                                {% for category in article.category.all %}
+                                    <a href="#">{{ category.title }}</a>
+                                {% endfor %}
+                            </p>
+
+                            <span class="post-format">
+                                        <i class="icon-picture"></i>
+                                    </span>
+                            <a href="blog-single.html">
+                                <div class="inner">
+                                    <img src="{{ article.main_image.url }}" alt="post-title"/>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <ul class="meta list-inline mb-0">
+                                <li class="list-inline-item"><a href="#"><img
+                                        src="{% static 'images/other/author-sm.png' %}"
+                                        class="author" alt="author"/>{{ article.author.username }}</a>
+                                </li>
+                                <li class="list-inline-item">{{ article.updated.date }}</li>
+                            </ul>
+                            <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">{{ article.title }}</a></h5>
+                            <p class="excerpt mb-0">{{ article.body|truncatewords:15 }}</p>
+                        </div>
+                        <div class="post-bottom clearfix d-flex align-items-center">
+                            <div class="social-share me-auto">
+                                <button class="toggle-button icon-share"></button>
+                                <ul class="icons list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item"><a href="#"><i
+                                            class="fab fa-facebook-f"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    </li>
+                                    <li class="list-inline-item"><a href="#"><i
+                                            class="fab fa-pinterest"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i
+                                            class="fab fa-telegram-plane"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="more-button float-end">
+                                <a href="blog-single.html"><span class="icon-options"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% if articles.has_other_pages %}
+            <nav>
+                <ul class="pagination justify-content-center">
+                    {% for page in articles.paginator.page_range %}
+
+                        {% if articles.number == page %}
+
+                            <li class="page-item active"><a class="page-link" href="#">{{ page }}</a></li>
+
+                        {% else %}
+
+                            <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+
+                        {% endif %}
+
+                    {% endfor %}
+                </ul>
+            </nav>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

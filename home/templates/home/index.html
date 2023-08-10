@@ -49,9 +49,11 @@
         <div class="post post-classic rounded bordered">
             <div class="thumb top-rounded">
 
-                <a href="category.html" class="category-badge lg position-absolute">
-                    {% for category in article.category.all %} {{ category.title }}، {% endfor %}
-                </a>
+                <p class="category-badge position-absolute">
+                    {% for category in article.category.all %}
+                        <a href="#">{{ category.title }}</a>
+                    {% endfor %}
+                </p>
 
                 <span class="post-format">
 								<i class="icon-picture"></i>
