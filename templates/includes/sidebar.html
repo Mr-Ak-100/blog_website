@@ -89,13 +89,8 @@
             <div class="widget-content">
                 <ul class="list">
                     {% for category in sidebar_categories %}
-                    <li><a href="#">{{ category.title }}</a><span></span></li>
+                    <li><a href="{% url 'article:category' category.slug %}">{{ category.title }}</a><span></span></li>
                     {% endfor %}
-                    {#                    <li><a href="#">الهام بخش</a><span>(2)</span></li>#}
-                    {#                    <li><a href="#">مد روز</a><span>(4)</span></li>#}
-                    {#                    <li><a href="#">سیاست</a><span>(1)</span></li>#}
-                    {#                    <li><a href="#">پرطرفدار</a><span>(7)</span></li>#}
-                    {#                    <li><a href="#">فرهنگ</a><span>(3)</span></li>#}
                 </ul>
             </div>
 
