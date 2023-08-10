@@ -24,6 +24,9 @@
     <li {% if request.resolver_match.url_name == 'home' %} class="active" {% endif %}>
         <a href="{% url 'main:home' %}">صفحه اصلی</a>
     </li>
+    <li {% if request.resolver_match.url_name == 'articles' %} class="active" {% endif %}>
+        <a href="{% url 'main:home' %}">پست ها</a>
+    </li>
     <li {% if request.resolver_match.url_name == 'contact' %} class="active" {% endif %}>
         <a href="{% url 'main:contact' %}">تماس با ما</a>
     </li>

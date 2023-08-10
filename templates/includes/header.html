@@ -53,6 +53,9 @@
                         <li class="nav-item {% if request.resolver_match.url_name == 'home' %} active {% endif %}">
                             <a class="nav-link" href="{% url 'main:home' %}">صفحه اصلی</a>
                         </li>
+                        <li class="nav-item {% if request.resolver_match.url_name == 'articles' %} active {% endif %}">
+                            <a class="nav-link" href="{% url 'article:articles' %}">پست ها</a>
+                        </li>
                         <li class="nav-item {% if request.resolver_match.url_name == 'contact' %} active {% endif %}">
                             <a class="nav-link" href="{% url 'main:contact' %}">تماس با ما</a>
                         </li>
