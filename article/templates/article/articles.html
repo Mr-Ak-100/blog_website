@@ -41,7 +41,7 @@
                             <span class="post-format">
                                         <i class="icon-picture"></i>
                                     </span>
-                            <a href="blog-single.html">
+                            <a href="{% url 'article:detail' article.slug %}">
                                 <div class="inner">
                                     <img src="{{ article.main_image.url }}" alt="post-title"/>
                                 </div>
@@ -55,7 +55,7 @@
                                 </li>
                                 <li class="list-inline-item">{{ article.updated.date }}</li>
                             </ul>
-                            <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">{{ article.title }}</a></h5>
+                            <h5 class="post-title mb-3 mt-3"><a href="{% url 'article:detail' article.slug %}">{{ article.title }}</a></h5>
                             <p class="excerpt mb-0">{{ article.body|truncatewords:15 }}</p>
                         </div>
                         <div class="post-bottom clearfix d-flex align-items-center">

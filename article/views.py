@@ -41,3 +41,10 @@ def category(request, category_slug):
     objects = paginator.get_page(page)
 
     return render(request, "article/articles.html", {"sidebar": True, "articles": objects, "banner_name": banner_name})
+
+
+def detail(request, article_slug):
+
+    article = get_object_or_404(Article, slug=article_slug)
+
+    return render(request, "article/detail.html", {"sidebar": True, "article": article})
