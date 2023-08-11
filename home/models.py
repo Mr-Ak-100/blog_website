@@ -26,6 +26,8 @@ class Message(models.Model):
 class Info(models.Model):
 
     main_text = models.TextField(max_length=150)
+    website_title = models.CharField(max_length=35)
+    website_logo = models.ImageField(upload_to="main_images")
     phone = models.IntegerField()
     email = models.EmailField()
     country = models.CharField(max_length=20)
