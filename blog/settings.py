@@ -41,8 +41,16 @@ INSTALLED_APPS = [
 
     # My App
     'home',
-    'article'
+    'article',
+
+    # External App
+    'django_user_agents'
 ]
+
+# for using django_user_agents
+MIDDLEWARE_CLASSES = (
+    'django_user_agents.middleware.UserAgentMiddleware',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
