@@ -24,59 +24,24 @@
             </div>
             <div class="widget-content">
                 <!-- post -->
+                {% for article in sidebar_most_view %}
                 <div class="post post-list-sm circle">
                     <div class="thumb circle">
-                        <span class="number">1</span>
-                        <a href="blog-single.html">
+                        <span class="number"></span>
+                        <a href="{% url 'article:detail' article.slug %}">
                             <div class="inner">
-                                <img src="{% static 'images/posts/tabs-1.jpg' %}" alt="post-title"/>
+                                <img src="{{ article.main_image.url }}" alt="post-title"/>
                             </div>
                         </a>
                     </div>
                     <div class="details clearfix">
-                        <h6 class="post-title my-0"><a href="blog-single.html">3 راه آسان برای سریعتر
-                            کردن آیفون</a></h6>
+                        <h6 class="post-title my-0"><a href="{% url 'article:detail' article.slug %}">{{ article.title }}</a></h6>
                         <ul class="meta list-inline mt-1 mb-0">
-                            <li class="list-inline-item">30 اردیبهشت 1401</li>
+                            <li class="list-inline-item">{{ article.updated.date }}</li>
                         </ul>
                     </div>
                 </div>
-                <!-- post -->
-                <div class="post post-list-sm circle">
-                    <div class="thumb circle">
-                        <span class="number">2</span>
-                        <a href="blog-single.html">
-                            <div class="inner">
-                                <img src="{% static 'images/posts/tabs-2.jpg' %}" alt="post-title"/>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="details clearfix">
-                        <h6 class="post-title my-0"><a href="blog-single.html">یک روش فوق العاده آسان که
-                            برای همه کار می کند</a></h6>
-                        <ul class="meta list-inline mt-1 mb-0">
-                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- post -->
-                <div class="post post-list-sm circle">
-                    <div class="thumb circle">
-                        <span class="number">3</span>
-                        <a href="blog-single.html">
-                            <div class="inner">
-                                <img src="{% static 'images/posts/tabs-3.jpg' %}" alt="post-title"/>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="details clearfix">
-                        <h6 class="post-title my-0"><a href="blog-single.html">10 راه برای شروع فوری
-                            فروش مبلمان</a></h6>
-                        <ul class="meta list-inline mt-1 mb-0">
-                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                        </ul>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
 
