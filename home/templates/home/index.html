@@ -13,11 +13,11 @@
                 <div class="post featured-post-xl">
                     <div class="details clearfix">
                         {% for category in article.category.all %}
-                        <a href="category.html" class="category-badge lg">
+                        <a href="{% url 'article:detail' article.slug %}" class="category-badge lg">
                              {{ category.title }}
                         </a>
                         {% endfor %}
-                        <h4 class="post-title"><a href="blog-single.html">{{ article.title }}</a></h4>
+                        <h4 class="post-title"><a href="{% url 'article:detail' article.slug %}">{{ article.title }}</a></h4>
                         <ul class="meta list-inline mb-0">
                             <li class="list-inline-item"><a href="#">{{ article.author.username }}</a></li>
                             <li class="list-inline-item">{{ article.updated.date }}</li>
@@ -58,7 +58,7 @@
                 <span class="post-format">
 								<i class="icon-picture"></i>
 							</span>
-                <a href="blog-single.html">
+                <a href="{% url 'article:detail' article.slug %}">
                     <div class="inner">
                         <img src="{{ article.main_image.url }}" alt="post-title"/>
                     </div>
@@ -72,7 +72,7 @@
                     <li class="list-inline-item">{{ article.updated.date }}</li>
                     <li class="list-inline-item"><i class="icon-bubble"></i> (0)</li>
                 </ul>
-                <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">{{ article.title }}</a></h5>
+                <h5 class="post-title mb-3 mt-3"><a href="{% url 'article:detail' article.slug %}">{{ article.title }}</a></h5>
                 <p class="excerpt mb-0">{{ article.body|truncatewords:35 }}</p>
             </div>
             <div class="post-bottom clearfix d-flex align-items-center">

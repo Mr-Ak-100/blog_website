@@ -39,3 +39,22 @@ class Article(models.Model):
 
     def __str__(self):
         return f"{self.author.username} > {self.title[:40]}"
+
+
+class ArticleView(models.Model):
+
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="requests")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="article_requests", null=True)
+    client_ip = models.GenericIPAddressField()
+    device = models.CharField(max_length=40)
+    os = models.CharField(max_length=40)
+    os_version = models.CharField(max_length=20)
+    browser = models.CharField(max_length=40)
+    browser_version = models.CharField(max_length=20)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']
+
+    def __str__(self):
+        return f"{self.article.slug} requested by {self.client_ip}"
