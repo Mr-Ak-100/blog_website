@@ -38,7 +38,7 @@ class Article(models.Model):
     objects = ArticleManager()
 
     def __str__(self):
-        return f"{self.author.username} > {self.title[:40]}"
+        return f"{self.author.username} : {self.title[:40]}"
 
 
 class ArticleView(models.Model):
@@ -58,3 +58,15 @@ class ArticleView(models.Model):
 
     def __str__(self):
         return f"{self.article.slug} requested by {self.client_ip}"
+
+
+class Comment(models.Model):
+
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
+    reply = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="replies")
+    body = models.TextField(max_length=300)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} : {self.body[:30]} "
