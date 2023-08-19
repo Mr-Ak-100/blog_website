@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from . models import Article, Category, ArticleView
+from . models import Article, Category, ArticleView, Comment
 from django.core.paginator import Paginator
 from django.http import Http404
 from django_user_agents.utils import get_user_agent
@@ -47,6 +47,7 @@ def category(request, category_slug):
 def detail(request, article_slug):
 
     article = get_object_or_404(Article, slug=article_slug)
+    comments = article.comments.published().order_by("-created")
     user_agents = get_user_agent(request)
 
     def get_client_ip():
@@ -89,4 +90,4 @@ def detail(request, article_slug):
     article.views = article.requests.count()
     article.save()
 
-    return render(request, "article/detail.html", {"sidebar": True, "article": article})
+    return render(request, "article/detail.html", {"sidebar": True, "article": article, "comments": comments})

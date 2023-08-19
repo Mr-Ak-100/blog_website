@@ -17,3 +17,10 @@ class ArticleManager(models.Manager):
 
     def home_items(self):
         return self.filter(home_item=True).exclude(published=False)
+
+
+class CommentManager(models.Manager):
+
+    def published(self):
+        return self.filter(published=True)
+

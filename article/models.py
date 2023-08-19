@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from . managers import CategoryManager, ArticleManager
+from . managers import CategoryManager, ArticleManager, CommentManager
 
 
 class Category(models.Model):
@@ -66,7 +66,9 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     reply = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="replies")
     body = models.TextField(max_length=300)
+    published = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+    objects = CommentManager()
 
     def __str__(self):
         return f"{self.user.username} : {self.body[:30]} "
