@@ -5,13 +5,13 @@ from django.http import HttpResponseNotAllowed
 
 class Message(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="messages", null=True, blank=True)
-    name = models.CharField(max_length=50, null=True)
-    email = models.EmailField()
-    title = models.CharField(max_length=150)
-    body = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="messages", null=True, blank=True, verbose_name="نویسنده")
+    name = models.CharField(max_length=50, null=True, verbose_name="نام")
+    email = models.EmailField(verbose_name="ایمیل")
+    title = models.CharField(max_length=150, verbose_name="موضوع")
+    body = models.TextField(verbose_name="متن پیام")
     created = models.DateTimeField(auto_now_add=True)
-    read = models.BooleanField(default=False)
+    read = models.BooleanField(default=False, verbose_name="خوانده شده ؟")
 
     class Meta:
         ordering = ["read", "-created"]
@@ -27,16 +27,16 @@ class Message(models.Model):
 
 class Info(models.Model):
 
-    main_text = models.TextField(max_length=150)
+    main_text = models.TextField(max_length=150, verbose_name="متن کوتاه سایدبار")
     website_title = models.CharField(max_length=35)
-    website_logo = models.ImageField(upload_to="main_images")
-    phone = models.IntegerField()
-    email = models.EmailField()
-    country = models.CharField(max_length=20)
-    city = models.CharField(max_length=20)
-    about_text = models.TextField()
-    main_logo = models.ImageField(upload_to="main_images")
-    about_image = models.ImageField(upload_to="main_images")
+    website_logo = models.ImageField(upload_to="main_images", verbose_name="لوگو 1")
+    phone = models.IntegerField(verbose_name="شماره موبایل")
+    email = models.EmailField(verbose_name="ایمیل")
+    country = models.CharField(max_length=20, verbose_name="کشکور")
+    city = models.CharField(max_length=20, verbose_name="شهر")
+    about_text = models.TextField(verbose_name="متن صفحه درباره ما")
+    main_logo = models.ImageField(upload_to="main_images", verbose_name="لوگو اصلی")
+    about_image = models.ImageField(upload_to="main_images", verbose_name="تصویر صفحه درباره ما")
 
     def save(self, *args, **kwargs):
 
@@ -92,14 +92,14 @@ class Social(models.Model):
 
 class Log(models.Model):
 
-    page = models.CharField(max_length=40)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="requests_log", null=True)
-    client_ip = models.GenericIPAddressField()
-    device = models.CharField(max_length=40)
-    os = models.CharField(max_length=40)
-    os_version = models.CharField(max_length=20)
-    browser = models.CharField(max_length=40)
-    browser_version = models.CharField(max_length=20)
+    page = models.CharField(max_length=40, verbose_name="صفحه بازدید شده")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="requests_log", null=True, verbose_name="حساب کاربری")
+    client_ip = models.GenericIPAddressField(verbose_name="IP")
+    device = models.CharField(max_length=40, verbose_name="دستگاه")
+    os = models.CharField(max_length=40, verbose_name="سیستم عامل")
+    os_version = models.CharField(max_length=20, verbose_name="نسخه سیستم عامل")
+    browser = models.CharField(max_length=40, verbose_name="مرورگر")
+    browser_version = models.CharField(max_length=20, verbose_name="نسخه مرورگر")
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
