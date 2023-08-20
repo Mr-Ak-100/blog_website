@@ -13,7 +13,8 @@ class Category(models.Model):
 
     class Meta:
         ordering = ["-sidebar"]
-        verbose_name_plural = "Categories"
+        verbose_name = "دسته بندی"
+        verbose_name_plural = "دسته بندی ها"
 
     def __str__(self):
         return self.title
@@ -37,6 +38,10 @@ class Article(models.Model):
     updated = models.DateTimeField(auto_now=True)
     objects = ArticleManager()
 
+    class Meta:
+        verbose_name = "مقاله"
+        verbose_name_plural = "مقالات"
+
     def __str__(self):
         return f"{self.author.username} : {self.title[:40]}"
 
@@ -54,7 +59,9 @@ class ArticleView(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-created']
+        ordering = ["-created"]
+        verbose_name = "بازدید مقاله"
+        verbose_name_plural = "بازدید های مقالات"
 
     def __str__(self):
         return f"{self.article.slug} requested by {self.client_ip}"
@@ -69,6 +76,11 @@ class Comment(models.Model):
     published = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     objects = CommentManager()
+
+    class Meta:
+        ordering = ["-created"]
+        verbose_name = "کامنت"
+        verbose_name_plural = "کامنت ها"
 
     def __str__(self):
         return f"{self.user.username} : {self.body[:30]} "

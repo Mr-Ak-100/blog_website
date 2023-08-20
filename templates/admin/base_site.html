@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}مدیریت بلاگ{% endblock %}
+
+{% block branding %}
+
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">پنل ادمین</a></h1>
+
+    {% if user.is_anonymous %}
+        {% include "admin/color_theme_toggle.html" %}
+    {% endif %}
+
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin_style.css' %}">
+{% endblock %}

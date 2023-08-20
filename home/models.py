@@ -15,6 +15,8 @@ class Message(models.Model):
 
     class Meta:
         ordering = ["read", "-created"]
+        verbose_name = "پیام کاربر"
+        verbose_name_plural = "پیام های کاربران"
 
     def __str__(self):
         if self.user is not None:
@@ -51,10 +53,11 @@ class Info(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name_plural = "Info"
+        verbose_name = "اطلاعات اصلی"
+        verbose_name_plural = "اطلاعات اصلی"
 
     def __str__(self):
-        return "Info"
+        return "اطلاعات"
 
 
 class Social(models.Model):
@@ -80,10 +83,11 @@ class Social(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name_plural = "Social"
+        verbose_name = "شبکه های اجتماعی"
+        verbose_name_plural = "شبکه های اجتماعی"
 
     def __str__(self):
-        return "Social"
+        return "شبکه های اجتماعی"
 
 
 class Log(models.Model):
@@ -100,6 +104,8 @@ class Log(models.Model):
 
     class Meta:
         ordering = ['-created']
+        verbose_name = "لاگ"
+        verbose_name_plural = "لاگ ها"
 
     def __str__(self):
         return f"{self.page} requested by {self.client_ip}"
