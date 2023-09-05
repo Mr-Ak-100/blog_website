@@ -9,7 +9,7 @@
             <div class="widget-about data-bg-image text-center"
                  data-bg-image="{% static 'images/map-bg.png' %}">
                 <img src="{% static 'images/logo.svg' %}" alt="logo" class="mb-4"/>
-                <p class="mb-4">{{ info.main_text }}</p>
+                <p class="mb-4">{{ info.main_text|safe }}</p>
                 <ul class="social-icons list-unstyled list-inline mb-0">
                     {% include 'includes/social_icons.html' %}
                 </ul>

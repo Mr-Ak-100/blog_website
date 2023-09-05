@@ -23,7 +23,7 @@
                             <li class="list-inline-item">{{ article.updated.date }}</li>
                         </ul>
                     </div>
-                    <a href="blog-single.html">
+                    <a href="{% url 'article:detail' article.slug %}">
                         <div class="thumb rounded">
                             <div class="inner data-bg-image"
                                  data-bg-image="{{ article.main_image.url }}"></div>
@@ -73,7 +73,7 @@
                     <li class="list-inline-item"><i class="icon-bubble"></i> (0)</li>
                 </ul>
                 <h5 class="post-title mb-3 mt-3"><a href="{% url 'article:detail' article.slug %}">{{ article.title }}</a></h5>
-                <p class="excerpt mb-0">{{ article.body|truncatewords:35 }}</p>
+                <p class="excerpt mb-0">{{ article.body|truncatewords:35|safe }}</p>
             </div>
             <div class="post-bottom clearfix d-flex align-items-center">
                 <div class="social-share me-auto">
@@ -89,11 +89,11 @@
                     </ul>
                 </div>
                 <div class="float-end d-none d-md-block">
-                    <a href="blog-single.html" class="more-link">ادامه مطلب<i
+                    <a href="{% url 'article:detail' article.slug %}" class="more-link">ادامه مطلب<i
                             class="icon-arrow-left"></i></a>
                 </div>
                 <div class="more-button d-block d-md-none float-end">
-                    <a href="blog-single.html"><span class="icon-options"></span></a>
+                    <a href="{% url 'article:detail' article.slug %}"><span class="icon-options"></span></a>
                 </div>
             </div>
         </div>
