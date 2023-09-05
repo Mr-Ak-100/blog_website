@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from . models import Article, Category, ArticleView, Comment
+from . models import Article, Category, Comment
 from django.core.paginator import Paginator
 from django.http import Http404
 from log_system.base import LogSystem
+from itertools import chain
 
 
 def articles(request):
@@ -62,3 +63,16 @@ def detail(request, article_slug):
     article.save()
 
     return render(request, "article/detail.html", {"sidebar": True, "article": article, "comments": comments})
+
+
+def search(request):
+
+    value = request.GET["value"]
+
+    title_search = Article.objects.filter(title__icontains=value)
+    body_search = Article.objects.filter(body__icontains=value)
+
+    objects = sorted(chain(title_search, body_search))
+
+    return render(request, "article/articles.html", {"sidebar": True, "articles": objects, "banner_name": f"جستجو برای {value}"})
+
