@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # My App
     'home',
     'article',
+    'account',
 
     # External App
     'django_user_agents',
