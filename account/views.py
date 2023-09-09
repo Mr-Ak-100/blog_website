@@ -2,11 +2,18 @@ from django.shortcuts import render
 from . forms import LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login as blog_login
+from django.contrib.auth import logout as blog_logout
 from django.shortcuts import redirect
 
 
 def profile(request):
     pass
+
+
+def logout(request):
+
+    blog_logout(request)
+    return redirect("main:home")
 
 
 def login(request):
