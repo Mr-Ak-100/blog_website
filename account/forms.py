@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ValidationError
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
@@ -31,5 +32,19 @@ class LoginForm(forms.Form):
 
 
 class RegisterForm(forms.Form):
-    pass
 
+    username = forms.CharField(min_length=4, max_length=25, widget=forms.TextInput())
+    password = forms.CharField(min_length=5, widget=forms.PasswordInput())
+
+    def clean_username(self):
+
+        username = self.cleaned_data["username"]
+
+        try:
+            if User.objects.get(username=username):
+
+                raise ValidationError("! غیر قابل استفاده")
+
+        except User.DoesNotExist:
+
+            return username

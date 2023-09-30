@@ -27,20 +27,27 @@
             <span>OR</span>
         </div> -->
 
-        <form action="">
+        <h4 id="form-errors" style="color: red">{{ register_form.non_field_errors }}</h4>
+
+        <form action="" method="post">
+            {% csrf_token %}
 {#            <label for="name">#}
 {#                <span>Full Name</span>#}
 {#                <input type="text" id="name" name="name">#}
 {#            </label>#}
 
             <label for="email">
-                <span>Username</span>
-                <input type="text" id="email" name="username">
+                <span><h3>:یوزرنیم</h3></span>
+                <br>
+                <h4>{{ register_form.username.errors }}</h4>
+                {{ register_form.username }}
             </label>
 
             <label for="password" style="margin-bottom: 10%">
-                <span>Password</span>
-                <input type="password" id="password" name="password">
+                <span><h3>:پسورد</h3></span>
+                <br>
+                <h4>{{ register_form.password.errors }}</h4>
+                {{ register_form.password }}
             </label>
 
             <input type="submit" value="Sign Up" id="button">

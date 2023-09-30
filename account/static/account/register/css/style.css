@@ -177,3 +177,11 @@ section.images .circle {
         font-size: 1rem;
     }
 }
+
+label *{
+    text-align: center;
+}
+
+.form-errors, h4{
+    color: red;
+}

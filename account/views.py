@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . forms import LoginForm
+from . forms import LoginForm, RegisterForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login as blog_login
 from django.contrib.auth import logout as blog_logout
@@ -38,5 +38,22 @@ def login(request):
 
 def register(request):
 
-    return render(request, "account/register.html")
+    register_form = RegisterForm
+
+    if request.method == "POST":
+
+        register_form = register_form(request.POST)
+
+        if register_form.is_valid():
+
+            username = register_form.cleaned_data["username"]
+            password = register_form.cleaned_data["password"]
+
+            user = User(username=username, password=password)
+            user.save()
+
+            blog_login(request, user)
+            return redirect("main:home")
+
+    return render(request, "account/register.html", {"register_form": register_form})
 
