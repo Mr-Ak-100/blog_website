@@ -7,7 +7,8 @@ from django.shortcuts import redirect
 
 
 def profile(request):
-    pass
+
+    return redirect("main:home")
 
 
 def logout(request):
