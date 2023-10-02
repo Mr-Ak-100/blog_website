@@ -1,3 +1,8 @@
 from django.contrib import admin
+from . models import AuthenticationLog
 
-# Register your models here.
+
+@admin.register(AuthenticationLog)
+class AuthenticationLogAdmin(admin.ModelAdmin):
+
+    list_filter = ("type",)

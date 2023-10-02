@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login as blog_login
 from django.contrib.auth import logout as blog_logout
 from django.shortcuts import redirect
+from log_system.base import AuthenticationLogSystem as Log
 
 
 def profile(request):
@@ -13,7 +14,12 @@ def profile(request):
 
 def logout(request):
 
+    user = request.user
     blog_logout(request)
+
+    log = Log(request, user, "Logout")
+    log.set_log()
+
     return redirect("main:home")
 
 
@@ -31,6 +37,9 @@ def login(request):
             user = User.objects.get(username=username)
 
             blog_login(request, user)
+
+            log = Log(request, user, "Login")
+            log.set_log()
 
             return redirect("main:home")
 
@@ -53,8 +62,10 @@ def register(request):
             user = User(username=username, password=password)
             user.save()
 
+            log = Log(request, user, "Register")
+            log.set_log()
+
             blog_login(request, user)
             return redirect("main:home")
 
     return render(request, "account/register.html", {"register_form": register_form})
-

@@ -1,6 +1,7 @@
 from django_user_agents.utils import get_user_agent
 from home.models import Log as HomeLog
 from article.models import ArticleView
+from account.models import AuthenticationLog
 
 
 class LogSystem:
@@ -68,3 +69,27 @@ class LogSystem:
                 browser=self.user_agents.browser.family,
                 browser_version=self.user_agents.browser.version_string
             )
+
+
+class AuthenticationLogSystem(LogSystem):
+
+    def __init__(self, request, user, method):
+
+        self.request = request
+        self.user = user
+        self.type = method
+        self.user_agents = get_user_agent(request)
+
+    def set_log(self):
+
+        AuthenticationLog.objects.create(
+
+            user=self.user,
+            type=self.type,
+            client_ip=self.get_client_ip(),
+            device=self.get_client_device(),
+            os=self.user_agents.os.family,
+            os_version=self.user_agents.os.version_string,
+            browser=self.user_agents.browser.family,
+            browser_version=self.user_agents.browser.version_string
+        )
