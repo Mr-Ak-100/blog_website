@@ -108,4 +108,10 @@ class Log(models.Model):
         verbose_name_plural = "لاگ ها"
 
     def __str__(self):
-        return f"{self.page} requested by {self.client_ip}"
+
+        if self.user:
+            return f"{self.page} requested by {self.user.username}"
+
+        else:
+            return f"{self.page} requested by {self.client_ip}"
+        

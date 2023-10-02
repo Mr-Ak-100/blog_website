@@ -65,7 +65,12 @@ class ArticleView(models.Model):
         verbose_name_plural = "بازدید های مقالات"
 
     def __str__(self):
-        return f"{self.article.slug} requested by {self.client_ip}"
+
+        if self.user:
+            return f"{self.article.slug} requested by {self.user.username}"
+
+        else:
+            return f"{self.article.slug} requested by {self.client_ip}"
 
 
 class Comment(models.Model):
