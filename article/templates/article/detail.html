@@ -98,22 +98,22 @@
                             <h4 class="name"><a href="#">{{ comment.user.username }}</a></h4>
                             <span class="date">{{ comment.created }}</span>
                             <p>{{ comment.body }}</p>
-                            <a href="#" class="btn btn-default btn-sm">پاسخ</a>
+{#                            <a href="#" class="btn btn-default btn-sm">پاسخ</a>#}
                         </div>
                     </li>
                     <!-- comment item -->
-                    {% for reply in comment.replies.all %}
-                        <li class="comment child rounded">
-                            <div class="thumb">
-                                <img src="{% static 'images/other/comment-2.png' %}" alt="John Doe"/>
-                            </div>
-                            <div class="details">
-                                <h4 class="name"><a href="#">{{ reply.user.username }}</a></h4>
-                                <span class="date">{{ reply.created }}</span>
-                                <p>{{ reply.body }}</p>
-                            </div>
-                        </li>
-                    {% endfor %}
+{#                    {% for reply in comment.replies.all %}#}
+{#                        <li class="comment child rounded">#}
+{#                            <div class="thumb">#}
+{#                                <img src="{% static 'images/other/comment-2.png' %}" alt="John Doe"/>#}
+{#                            </div>#}
+{#                            <div class="details">#}
+{#                                <h4 class="name"><a href="#">{{ reply.user.username }}</a></h4>#}
+{#                                <span class="date">{{ reply.created }}</span>#}
+{#                                <p>{{ reply.body }}</p>#}
+{#                            </div>#}
+{#                        </li>#}
+{#                    {% endfor %}#}
                 {% endfor %}
             </ul>
         </div>
@@ -131,43 +131,46 @@
             <div class="comment-form rounded bordered padding-30">
 
                 <form id="comment-form" class="comment-form" method="post">
-
+                    {% csrf_token %}
                     <div class="messages"></div>
 
                     <div class="row">
 
                         <div class="column col-md-12">
                             <!-- Comment textarea -->
+                            {{ comment_form.non_field_errors }}
+                            {{ comment_form.body.errors }}
                             <div class="form-group">
-                                        <textarea name="InputComment" id="InputComment" class="form-control" rows="4"
-                                                  placeholder="متن نظر خود را بنویسید ..."
-                                                  required="required"></textarea>
+{#                                <textarea name="InputComment" id="InputComment" class="form-control" rows="5"#}
+{#                                          placeholder="متن نظر خود را بنویسید ..."#}
+{#                                          required="required"></textarea>#}
+                                {{ comment_form.body }}
                             </div>
                         </div>
 
-                        <div class="column col-md-6">
-                            <!-- Email input -->
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="InputEmail" name="InputEmail"
-                                       placeholder="ایمیل خود را بنویسید" required="required">
-                            </div>
-                        </div>
+{#                        <div class="column col-md-6">#}
+{#                            <!-- Email input -->#}
+{#                            <div class="form-group">#}
+{#                                <input type="email" class="form-control" id="InputEmail" name="InputEmail"#}
+{#                                       placeholder="ایمیل خود را بنویسید" required="required">#}
+{#                            </div>#}
+{#                        </div>#}
 
-                        <div class="column col-md-6">
-                            <!-- Name input -->
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="InputWeb" id="InputWeb"
-                                       placeholder="وبسایت خود را وارد کنید" required="required">
-                            </div>
-                        </div>
-
-                        <div class="column col-md-12">
-                            <!-- Email input -->
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="InputName" name="InputName"
-                                       placeholder="نام خود را بنویسید" required="required">
-                            </div>
-                        </div>
+{#                        <div class="column col-md-6">#}
+{#                            <!-- Name input -->#}
+{#                            <div class="form-group">#}
+{#                                <input type="text" class="form-control" name="InputWeb" id="InputWeb"#}
+{#                                       placeholder="وبسایت خود را وارد کنید" required="required">#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="column col-md-12">#}
+{#                            <!-- Email input -->#}
+{#                            <div class="form-group">#}
+{#                                <input type="text" class="form-control" id="InputName" name="InputName"#}
+{#                                       placeholder="نام خود را بنویسید" required="required">#}
+{#                            </div>#}
+{#                        </div>#}
 
                     </div>
 
@@ -178,7 +181,7 @@
                 </form>
             </div>
         {% else %}
-            <p>برای ارسال نظر <a href="/admin/">وارد</a> شید!</p>
+            <p> برای ارسال نظر <a href="{% url 'account:login' %}">وارد</a> شوید یا <a href="{% url 'account:register' %}">حساب کاربری</a> بسازید! </p>
         {% endif %}
     </div>
 {% endblock %}

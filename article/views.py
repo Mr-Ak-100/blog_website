@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from . models import Article, Category, Comment
+from . forms import CommentForm
 from django.core.paginator import Paginator
 from django.http import Http404
 from log_system.base import LogSystem
@@ -54,6 +55,25 @@ def category(request, category_slug):
 def detail(request, article_slug):
 
     article = get_object_or_404(Article, slug=article_slug)
+    comment_form = CommentForm
+
+    if request.method == "POST":
+
+        comment_form = comment_form(request.POST)
+
+        if comment_form.is_valid():
+
+            Comment.objects.create(
+                article=article,
+                user=request.user,
+                body=comment_form.cleaned_data["body"],
+                published=True
+            )
+
+            return redirect("article:detail", article_slug)
+
+        # else: show form error message in template
+
     comments = article.comments.published().order_by("-created")
 
     log = LogSystem(request, article)
@@ -62,7 +82,7 @@ def detail(request, article_slug):
     article.views = article.requests.count()
     article.save()
 
-    return render(request, "article/detail.html", {"sidebar": True, "article": article, "comments": comments})
+    return render(request, "article/detail.html", {"sidebar": True, "article": article, "comments": comments, "comment_form": comment_form})
 
 
 def search(request):

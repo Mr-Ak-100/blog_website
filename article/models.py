@@ -72,7 +72,6 @@ class Comment(models.Model):
 
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', verbose_name="مقاله")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments", verbose_name="حساب کاربری")
-    reply = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="replies", verbose_name="ریپلای")
     body = models.TextField(max_length=300, verbose_name="متن کامنت")
     published = models.BooleanField(default=False, verbose_name="انتشار", help_text="تا وقتی دکمه انتشار تیک نخورد این کامنت در هیچ کدام از صفحات وبسایت قابل رؤیت نخواهد بود")
     created = models.DateTimeField(auto_now_add=True)
