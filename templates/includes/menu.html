@@ -1,0 +1,36 @@
+{% load static %}
+
+<ul class="vertical-menu">
+
+    <li {% if request.resolver_match.url_name == 'home' %} class="active" {% endif %}>
+        <a href="{% url 'main:home' %}">صفحه اصلی</a>
+    </li>
+    <li {% if request.resolver_match.url_name == 'articles' %} class="active" {% endif %}>
+        <a href="{% url 'article:articles' %}">پست ها</a>
+    </li>
+    <li>
+        <a href="#">
+            {% if request.user.is_authenticated %} {{ request.user.username }} {% else %}
+                حساب کاربری
+            {% endif %}
+        </a>
+        <ul class="submenu">
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'account:logout' %}">خروج</a></li>
+            {% else %}
+                <li {% if request.resolver_match.url_name == 'login' %} class="active" {% endif %}>>
+                    <a href="{% url 'account:login' %}">ورود</a>
+                </li>
+                <li {% if request.resolver_match.url_name == 'register' %} class="active" {% endif %}>>
+                    <a href="{% url 'account:register' %}">ساخت حساب</a>
+                </li>
+            {% endif %}
+        </ul>
+    </li>
+    <li {% if request.resolver_match.url_name == 'contact' %} class="active" {% endif %}>
+        <a href="{% url 'main:contact' %}">تماس با ما</a>
+    </li>
+    <li {% if request.resolver_match.url_name == 'about' %} class="active" {% endif %}>
+        <a href="{% url 'main:about' %}">درباره ما</a>
+    </li>
+</ul>

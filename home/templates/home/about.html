@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- page header -->
+{% block baner %}
+    <section class="page-header">
+        <div class="container-xl">
+            <div class="text-center">
+                <h1 class="mt-0 mb-2">درباره ما</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center mb-0">
+                        <li class="breadcrumb-item"><a href="#">صفحه اصلی</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">درباره ما</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+<!-- main content -->
+{% block body %}
+    <div class="col-lg-8">
+
+        <div class="page-content bordered rounded padding-30">
+
+            <img style="width: 550px; height: 550px" src="{{ info.about_image }}" alt="کاتن" class="rounded mb-4"/>
+
+            <p>{{ info.about_text|safe }}</p>
+
+            {#            <p>سلام، من یک نویسنده محتوا هستم که مجذوب مطالب مد روز، سلبریتی و سبک زندگی هستم. او به مشتریان#}
+            {#                کمک می کند تا محتوای مناسب را برای افراد مناسب بیاورند.</p>#}
+            {##}
+            {#            <p>رودخانه کوچکی به نام دودن در کنار آنها جریان دارد و مواد غذایی لازم را برای آن تامین می کند.#}
+            {#                این کشور بهشتی است که در آن قسمت های برشته جملات در دهان شما پرواز می کند.</p>#}
+            {##}
+            {#            <p>حتی «اشاره‌گیری» قدرتمند هیچ کنترلی روی متون کور ندارد، این یک زندگی تقریباً غیرمستقل است، یک#}
+            {#                روز، یک خط کوچک از متن کور به نام لورم ایپسوم تصمیم گرفت به دنیای دوردست گرامر برود.</p>#}
+            {##}
+            {#            <p>Big Oxmox به او توصیه کرد که این کار را نکند، زیرا هزاران ویرگول بد، علامت سوال وحشی و#}
+            {#                Semikoli گمراه کننده وجود داشت، اما متن کور کوچک گوش نکرد. او هفت ورسالیا خود را بسته بندی#}
+            {#                کرد، حرف اول خود را در کمربند گذاشت و خود را در راه قرار داد.</p>#}
+
+            <hr class="my-4"/>
+            <ul class="social-icons list-unstyled list-inline mb-0">
+                {% include 'includes/social_icons.html' %}
+            </ul>
+
+        </div>
+
+    </div>
+{% endblock %}

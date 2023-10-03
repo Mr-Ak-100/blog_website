@@ -1,0 +1,90 @@
+{% load static %}
+
+<div class="container-xl">
+    <!-- header top -->
+    <div class="header-top">
+        <div class="row align-items-center">
+
+            <div class="col-md-4 col-xs-12">
+                <!-- site logo -->
+                <a class="navbar-brand" href="{% url 'main:home' %}"><img style="width: 50px; height: 50px"
+                                                                          src="{{ info.main_logo.url }}"
+                                                                          alt="logo"/></a>
+            </div>
+
+            <div class="col-md-8 d-none d-md-block">
+                <!-- social icons -->
+                <ul class="social-icons list-unstyled list-inline mb-0 float-end">
+                    {% include 'includes/social_icons.html' %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg">
+    <!-- header bottom -->
+    <div class="header-bottom  w-100">
+
+        <div class="container-xl">
+            <div class="d-flex align-items-center">
+                <div class="collapse navbar-collapse flex-grow-1">
+                    <!-- menus -->
+                    <ul class="navbar-nav">
+                        {#                        <li class="nav-item dropdown active">#}
+                        {#                            <a class="nav-link dropdown-toggle" href="index.html">صفحه اصلی</a>#}
+                        {#                            <ul class="dropdown-menu">#}
+                        {#                                <li><a class="dropdown-item" href="index.html">صفحه اصلی 1</a></li>#}
+                        {#                                <li><a class="dropdown-item" href="index-2.html">صفحه اصلی 2</a></li>#}
+                        {#                                <li><a class="dropdown-item" href="index-3.html">صفحه اصلی 3</a></li>#}
+                        {#                                <li><a class="dropdown-item" href="index-4.html">صفحه اصلی 4</a></li>#}
+                        {#                                <li><a class="dropdown-item" href="index-5.html">صفحه اصلی 5</a></li>#}
+                        {#                            </ul>#}
+                        {#                        </li>#}
+                        {##}
+
+                        <li class="nav-item {% if request.resolver_match.url_name == 'home' %} active {% endif %}">
+                            <a class="nav-link" href="{% url 'main:home' %}">صفحه اصلی</a>
+                        </li>
+                        <li class="nav-item {% if request.resolver_match.url_name == 'articles' %} active {% endif %}">
+                            <a class="nav-link" href="{% url 'article:articles' %}">پست ها</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{% url 'account:profile' %}">
+                                {% if request.user.is_authenticated %} {{ request.user.username }} {% else %}
+                                    حساب کاربری
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if request.user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'account:logout' %}">خروج</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item {% if request.resolver_match.url_name == 'login' %} active {% endif %}" href="{% url 'account:login' %}">ورود</a></li>
+                                    <li><a class="dropdown-item {% if request.resolver_match.url_name == 'register' %} active {% endif %}" href="{% url 'account:register' %}">ساخت حساب</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        <li class="nav-item {% if request.resolver_match.url_name == 'contact' %} active {% endif %}">
+                            <a class="nav-link" href="{% url 'main:contact' %}">تماس با ما</a>
+                        </li>
+                        <li class="nav-item {% if request.resolver_match.url_name == 'about' %} active {% endif %}">
+                            <a class="nav-link" href="{% url 'main:about' %}">درباره ما</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- header buttons -->
+                <div class="header-buttons">
+                    <button class="search icon-button">
+                        <i class="icon-magnifier"></i>
+                    </button>
+                    <button class="burger-menu icon-button ms-2 float-end float-lg-none">
+                        <span class="burger-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>

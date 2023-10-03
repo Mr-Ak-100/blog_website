@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="{% static 'account/register/css/style.css' %}">
+</head>
+<body>
+    <main>
+        <h1>خوش آمدید</h1>
+        <!-- <div class="social-media">
+            <a href="#">
+                <img src="assets/google.png" alt="Google">
+            </a>
+            <a href="#">
+                <img src="assets/facebook.png" alt="Facebook">
+            </a>
+            <a href="#">
+                <img src="assets/linkedin.png" alt="Linkedin">
+            </a>
+        </div> -->
+
+        <!-- <div class="alternative">
+            <span>OR</span>
+        </div> -->
+
+        <h4 id="form-errors" style="color: red">{{ register_form.non_field_errors }}</h4>
+
+        <form action="" method="post">
+            {% csrf_token %}
+{#            <label #}
+{#                <span>Full Name</span>#}
+{#                <input type="text" id="name" name="name">#}
+{#            </label>#}
+
+            <label>
+                <span><h3>:یوزرنیم</h3></span>
+                <br>
+                <h4>{{ register_form.username.errors }}</h4>
+                {{ register_form.username }}
+            </label>
+
+            <label>
+                <span><h3>:ایمیل</h3></span>
+                <br>
+                <h4>{{ register_form.email.errors }}</h4>
+                {{ register_form.email }}
+            </label>
+
+            <label style="margin-bottom: 10%">
+                <span><h3>:پسورد</h3></span>
+                <br>
+                <h4>{{ register_form.password.errors }}</h4>
+                {{ register_form.password }}
+            </label>
+
+            <input type="submit" value="ساخت حساب" id="button">
+        </form>
+    </main>
+    <section class="images">
+        <img src="{% static 'account/register/static/mobile.svg' %}" alt="Mobile">
+        <div class="circle"></div>
+    </section>
+</body>
+</html>

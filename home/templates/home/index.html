@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block baner %}
+
+    <section class="hero-carousel">
+        <div class="container-xl">
+            <div class="post-carousel-lg">
+                <!-- post -->
+
+                {% for article in articles.banner_items %}
+                <div class="post featured-post-xl">
+                    <div class="details clearfix">
+                        {% for category in article.category.all %}
+                        <a href="{% url 'article:detail' article.slug %}" class="category-badge lg">
+                             {{ category.title }}
+                        </a>
+                        {% endfor %}
+                        <h4 class="post-title"><a href="{% url 'article:detail' article.slug %}">{{ article.title }}</a></h4>
+                        <ul class="meta list-inline mb-0">
+                            <li class="list-inline-item"><a href="#">{{ article.author.username }}</a></li>
+                            <li class="list-inline-item">{{ article.updated.date }}</li>
+                        </ul>
+                    </div>
+                    <a href="{% url 'article:detail' article.slug %}">
+                        <div class="thumb rounded">
+                            <div class="inner data-bg-image"
+                                 data-bg-image="{{ article.main_image.url }}"></div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+
+<!-- main content -->
+{% block body %}
+
+    <div class="col-lg-8">
+
+        <!-- post -->
+        {% for article in articles.home_items %}
+        <div class="post post-classic rounded bordered">
+            <div class="thumb top-rounded">
+
+                <p class="category-badge position-absolute">
+                    {% for category in article.category.all %}
+                        <a href="#">{{ category.title }}</a>
+                    {% endfor %}
+                </p>
+
+                <span class="post-format">
+								<i class="icon-picture"></i>
+							</span>
+                <a href="{% url 'article:detail' article.slug %}">
+                    <div class="inner">
+                        <img src="{{ article.main_image.url }}" alt="post-title"/>
+                    </div>
+                </a>
+            </div>
+            <div class="details">
+                <ul class="meta list-inline mb-0">
+                    <li class="list-inline-item"><a href="#"><img
+                            src="{% static 'images/other/author-sm.png' %}" class="author" alt="author"/>{{ article.author.username }}</a>
+                    </li>
+                    <li class="list-inline-item">{{ article.updated.date }}</li>
+                    <li class="list-inline-item"><i class="icon-bubble"></i> (0)</li>
+                </ul>
+                <h5 class="post-title mb-3 mt-3"><a href="{% url 'article:detail' article.slug %}">{{ article.title }}</a></h5>
+                <p class="excerpt mb-0">{{ article.body|truncatewords:35|safe }}</p>
+            </div>
+            <div class="post-bottom clearfix d-flex align-items-center">
+                <div class="social-share me-auto">
+                    <button class="toggle-button icon-share"></button>
+                    <ul class="icons list-unstyled list-inline mb-0">
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a>
+                        </li>
+                        <li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+                <div class="float-end d-none d-md-block">
+                    <a href="{% url 'article:detail' article.slug %}" class="more-link">ادامه مطلب<i
+                            class="icon-arrow-left"></i></a>
+                </div>
+                <div class="more-button d-block d-md-none float-end">
+                    <a href="{% url 'article:detail' article.slug %}"><span class="icon-options"></span></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        {#        <nav>#}
+        {#            <ul class="pagination justify-content-center">#}
+        {#                <li class="page-item active" aria-current="page">#}
+        {#                    <span class="page-link">1</span>#}
+        {#                </li>#}
+        {#                <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+        {#                <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+        {#            </ul>#}
+        {#        </nav>#}
+
+    </div>
+
+{% endblock %}
+
+<!-- instagram feed -->
+{#	<div class="instagram">#}
+{#		<div class="container-xl">#}
+{#			<!-- button -->#}
+{#			<a href="#" class="btn btn-default btn-instagram">@Katen در اینستاگرام</a>#}
+{#			<!-- images -->#}
+{#			<div class="instagram-feed d-flex flex-wrap">#}
+{#				<div class="insta-item col-sm-2 col-6 col-md-2">#}
+{#					<a href="#">#}
+{#						<img src="images/insta/insta-1.jpg" alt="insta-title" />#}
+{#					</a>#}
+{#				</div>#}
+{#				<div class="insta-item col-sm-2 col-6 col-md-2">#}
+{#					<a href="#">#}
+{#						<img src="images/insta/insta-2.jpg" alt="insta-title" />#}
+{#					</a>#}
+{#				</div>#}
+{#				<div class="insta-item col-sm-2 col-6 col-md-2">#}
+{#					<a href="#">#}
+{#						<img src="images/insta/insta-3.jpg" alt="insta-title" />#}
+{#					</a>#}
+{#				</div>#}
+{#				<div class="insta-item col-sm-2 col-6 col-md-2">#}
+{#					<a href="#">#}
+{#						<img src="images/insta/insta-4.jpg" alt="insta-title" />#}
+{#					</a>#}
+{#				</div>#}
+{#				<div class="insta-item col-sm-2 col-6 col-md-2">#}
+{#					<a href="#">#}
+{#						<img src="images/insta/insta-5.jpg" alt="insta-title" />#}
+{#					</a>#}
+{#				</div>#}
+{#				<div class="insta-item col-sm-2 col-6 col-md-2">#}
+{#					<a href="#">#}
+{#						<img src="images/insta/insta-6.jpg" alt="insta-title" />#}
+{#					</a>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+{#	</div>#}
+

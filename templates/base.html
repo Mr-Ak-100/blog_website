@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    {% include 'includes/head_tag.html' %}
+</head>
+
+<body>
+
+<!-- preloader -->
+<div id="preloader">
+    {% include 'includes/preloader.html' %}
+</div>
+
+<!-- site wrapper -->
+<div class="site-wrapper">
+
+    <div class="main-overlay"></div>
+
+    <!-- header -->
+    <header class="header-classic">
+        {% include 'includes/header.html' %}
+    </header>
+
+
+    {% block baner %}
+
+
+    {% endblock %}
+
+    <!-- section main content -->
+    <section class="main-content">
+        <div class="container-xl">
+
+            <div class="row gy-4">
+
+                {% block body %}
+
+
+
+                {% endblock %}
+
+            {% if sidebar is True %}
+
+                {% include 'includes/sidebar.html' %}
+
+            {% endif %}
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        {% include 'includes/footer.html' %}
+    </footer>
+
+</div><!-- end site wrapper -->
+
+<!-- search popup area -->
+<div class="search-popup">
+    {% include 'includes/search_popup.html' %}
+</div>
+
+<!-- canvas menu -->
+<div class="canvas-menu d-flex align-items-end flex-column">
+    <!-- close button -->
+    <button type="button" class="btn-close" aria-label="Close"></button>
+
+    <!-- logo -->
+    <div class="logo">
+        <img src="{% static 'images/logo.svg' %}" alt="Katen"/>
+    </div>
+
+    <!-- menu -->
+    <nav>
+        {% include 'includes/menu.html' %}
+    </nav>
+
+    <!-- social icons -->
+    <ul class="social-icons list-unstyled list-inline mb-0 mt-auto w-100">
+        {% include 'includes/social_icons.html' %}
+    </ul>
+</div>
+
+<!-- JAVA SCRIPTS -->
+{% include 'includes/java_scripts.html' %}
+
+</body>
+
+</html>
