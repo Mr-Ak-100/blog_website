@@ -35,6 +35,7 @@ class RegisterForm(forms.Form):
 
     username = forms.CharField(min_length=4, max_length=25, widget=forms.TextInput())
     password = forms.CharField(min_length=5, widget=forms.PasswordInput())
+    email = forms.EmailField(widget=forms.EmailInput())
 
     def clean_username(self):
 
@@ -47,4 +48,17 @@ class RegisterForm(forms.Form):
 
         except User.DoesNotExist:
 
-            return username
+            return username.lower()
+
+    def clean_email(self):
+
+        email = self.cleaned_data["email"]
+
+        try:
+            if User.objects.get(email=email):
+
+                raise ValidationError("! غیر قابل استفاده")
+
+        except User.DoesNotExist:
+
+            return email

@@ -58,8 +58,9 @@ def register(request):
 
             username = register_form.cleaned_data["username"]
             password = register_form.cleaned_data["password"]
+            email = register_form.cleaned_data["email"]
 
-            user = User(username=username, password=password)
+            user = User(username=username, password=password, email=email)
             user.save()
 
             log = Log(request, user, "Register")
