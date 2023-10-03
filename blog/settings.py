@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My App
-    'home',
-    'article',
-    'account',
+    'home.apps.HomeConfig',
+    'article.apps.ArticleConfig',
+    'account.apps.AccountConfig',
 
     # External App
     'django_user_agents',
