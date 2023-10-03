@@ -9,6 +9,7 @@ global and english version:
 persian language:
     
 <div dir="rtl">
+
     ویژگی های پروژه:
         -کاملا فارسی سازی شده
         - ui جذاب
