@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.http import HttpResponseNotAllowed
+from django_jalali.db import models as jalali_models
 
 
 class Message(models.Model):
@@ -10,7 +11,7 @@ class Message(models.Model):
     email = models.EmailField(verbose_name="ایمیل")
     title = models.CharField(max_length=150, verbose_name="موضوع")
     body = models.TextField(verbose_name="متن پیام")
-    created = models.DateTimeField(auto_now_add=True)
+    created = jalali_models.jDateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False, verbose_name="خوانده شده ؟")
 
     class Meta:
@@ -100,7 +101,7 @@ class Log(models.Model):
     os_version = models.CharField(max_length=20, verbose_name="نسخه سیستم عامل")
     browser = models.CharField(max_length=40, verbose_name="مرورگر")
     browser_version = models.CharField(max_length=20, verbose_name="نسخه مرورگر")
-    created = models.DateTimeField(auto_now_add=True)
+    created = jalali_models.jDateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-created']

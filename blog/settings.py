@@ -46,7 +46,8 @@ INSTALLED_APPS = [
 
     # External App
     'django_user_agents',
-    'django_summernote'
+    'django_summernote',
+    'django_jalali'
 ]
 
 # for using django_user_agents

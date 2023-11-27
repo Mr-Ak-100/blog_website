@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from . managers import CategoryManager, ArticleManager, CommentManager
+from django_jalali.db import models as jalali_models
 
 
 class Category(models.Model):
@@ -34,8 +35,8 @@ class Article(models.Model):
     home_item = models.BooleanField(default=False, help_text="قرار گرفتن در مقاله های خانه")
     published = models.BooleanField(default=False, verbose_name="انتشار", help_text="تا وقتی دکمه انتشار تیک نخورد این مقاله در هیچ کدام از صفحات وبسایت قابل رؤیت نخواهد بود")
 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = jalali_models.jDateTimeField(auto_now_add=True)
+    updated = jalali_models.jDateTimeField(auto_now_add=True)
     objects = ArticleManager()
 
     class Meta:
@@ -57,7 +58,7 @@ class ArticleView(models.Model):
     os_version = models.CharField(max_length=20, verbose_name="نسخه سیستم عامل")
     browser = models.CharField(max_length=40, verbose_name="مرورگر")
     browser_version = models.CharField(max_length=20, verbose_name="نسخه مرورگر")
-    created = models.DateTimeField(auto_now_add=True)
+    created = jalali_models.jDateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["-created"]
@@ -79,7 +80,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments", verbose_name="حساب کاربری")
     body = models.TextField(max_length=300, verbose_name="متن کامنت")
     published = models.BooleanField(default=False, verbose_name="انتشار", help_text="تا وقتی دکمه انتشار تیک نخورد این کامنت در هیچ کدام از صفحات وبسایت قابل رؤیت نخواهد بود")
-    created = models.DateTimeField(auto_now_add=True)
+    created = jalali_models.jDateTimeField(auto_now_add=True)
     objects = CommentManager()
 
     class Meta:
