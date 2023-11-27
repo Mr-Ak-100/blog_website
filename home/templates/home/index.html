@@ -70,7 +70,7 @@
                             src="{% static 'images/other/author-sm.png' %}" class="author" alt="author"/>{{ article.author.username }}</a>
                     </li>
                     <li class="list-inline-item">{{ article.updated.date }}</li>
-                    <li class="list-inline-item"><i class="icon-bubble"></i> (0)</li>
+                    <li class="list-inline-item"><i class="icon-bubble"></i> ({{ article.comments.published.count }})</li>
                 </ul>
                 <h5 class="post-title mb-3 mt-3"><a href="{% url 'article:detail' article.slug %}">{{ article.title }}</a></h5>
                 <p class="excerpt mb-0">{{ article.body|truncatewords:35|safe }}</p>
