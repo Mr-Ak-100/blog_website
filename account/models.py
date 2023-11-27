@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_jalali.db import models as jalali_models
 
 
 choices = (("Login", "Login"), ("Register", "Register"), ("Logout", "Logout"))
@@ -16,7 +17,7 @@ class AuthenticationLog(models.Model):
     os_version = models.CharField(max_length=20, verbose_name="نسخه سیستم عامل")
     browser = models.CharField(max_length=40, verbose_name="مرورگر")
     browser_version = models.CharField(max_length=20, verbose_name="نسخه مرورگر")
-    created = models.DateTimeField(auto_now_add=True)
+    created = jalali_models.jDateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ("-created",)
